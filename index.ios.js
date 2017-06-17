@@ -8,24 +8,27 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  Dimensions,
   Text,
   View
 } from 'react-native';
+import Slider from './src/Slider'
+const {width, height} = Dimensions.get('window')
 
 export default class sliderFix extends Component {
-  render() {
+
+    onGetCurTime() {
+        return this.refs.sliderfix.getCurChoose();
+    }
+
+   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+       <Slider ref="sliderfix"
+           indexText={['0.5', '1', '1.5', '2', '3', '4', '5', '6']}
+               style={{width:width - 40, height:14}}
+               thresholdDis={2.5}
+               changeDot={()=>{console.log('渲染')}}/>
       </View>
     );
   }
